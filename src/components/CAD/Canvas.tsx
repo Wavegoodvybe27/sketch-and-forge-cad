@@ -18,11 +18,15 @@ export const Canvas = () => {
       backgroundColor: "#1A1F2C",
     });
 
-    // Initialize the freeDrawingBrush only after ensuring it exists
-    if (canvas.freeDrawingBrush) {
-      canvas.freeDrawingBrush.color = "#9b87f5";
-      canvas.freeDrawingBrush.width = 2;
-    }
+    // Wait for the canvas to be fully initialized before accessing freeDrawingBrush
+    setTimeout(() => {
+      if (canvas.freeDrawingBrush) {
+        canvas.freeDrawingBrush.color = "#9b87f5";
+        canvas.freeDrawingBrush.width = 2;
+      } else {
+        console.warn("freeDrawingBrush not available after initialization");
+      }
+    }, 0);
 
     setFabricCanvas(canvas);
 
