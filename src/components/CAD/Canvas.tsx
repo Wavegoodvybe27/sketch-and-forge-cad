@@ -18,8 +18,11 @@ export const Canvas = () => {
       backgroundColor: "#1A1F2C",
     });
 
-    canvas.freeDrawingBrush.color = "#9b87f5";
-    canvas.freeDrawingBrush.width = 2;
+    // Initialize the freeDrawingBrush only after ensuring it exists
+    if (canvas.freeDrawingBrush) {
+      canvas.freeDrawingBrush.color = "#9b87f5";
+      canvas.freeDrawingBrush.width = 2;
+    }
 
     setFabricCanvas(canvas);
 
@@ -42,6 +45,7 @@ export const Canvas = () => {
 
     fabricCanvas.isDrawingMode = activeTool === "draw";
     
+    // Add null check before accessing freeDrawingBrush
     if (activeTool === "draw" && fabricCanvas.freeDrawingBrush) {
       fabricCanvas.freeDrawingBrush.color = "#9b87f5";
       fabricCanvas.freeDrawingBrush.width = 2;
